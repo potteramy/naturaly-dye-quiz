@@ -12,6 +12,7 @@ var results = document.querySelector(".results");
 var timeSpan = document.getElementById("time")
 var currentQuestion
 var currentQuestionIndex = 0
+// var initials
 
 answer1.addEventListener("click", () => handleClick(1))
 answer2.addEventListener("click", () => handleClick(2))
@@ -67,6 +68,7 @@ function startQuiz() {
   setTime()
   currentQuestion = listQuestions[0]
   showQuestion(currentQuestion)
+  startButton.style.display = "none";
 }
 
 const handleClick = (num) => {
@@ -84,13 +86,16 @@ const handleClick = (num) => {
   } else {
     endGame()
   }
-  hideStartButton();
 }
 
 function endGame() {
   secondsLeft = 0
   alert(`Game Over, you got ${score} points`);
-}
+  initials = prompt("Enter your initials:");
+  localStorage.setItem("highScore", score);
+  localStorage.setItem("initials", initials);
+  showHighScore();
+};
 
 function setTime() {
   var timerInterval = setInterval(function () {
@@ -110,12 +115,12 @@ function showQuestion(question) {
   answer2.innerHTML = question.answers[1]
   answer3.innerHTML = question.answers[2]
   answer4.innerHTML = question.answers[3]
+};
+function showHighScore() {
+  var highScore = localStorage.getItem("highScore");
+  var highScoreInitials = localStorage.getItem("initials");
+  var highScoreSpan = document.getElementById("highScore");
+  if (highScore && highScoreInitials) {
+    highScoreSpan.textContent = `High Score: ${highScore} user: ${highScoreInitials}`;
+  }
 }
-
-function hideStartButton(startQuiz){
-  startButton.innerHTML.visibility('hidden');
-}
-
-
-
-//end: save initials and score
