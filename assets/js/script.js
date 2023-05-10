@@ -9,10 +9,11 @@ var answer3 = document.querySelector("#answer3");
 var answer4 = document.querySelector("#answer4");
 var questionBox = document.querySelector(".questionBox");
 var results = document.querySelector(".results");
-var timeSpan = document.getElementById("time")
-var currentQuestion
-var currentQuestionIndex = 0
-// var initials
+var timeSpan = document.getElementById("time");
+var currentQuestion;
+var currentQuestionIndex = 0;
+var initials;
+var timerInterval;
 
 answer1.addEventListener("click", () => handleClick(1))
 answer2.addEventListener("click", () => handleClick(2))
@@ -67,7 +68,7 @@ startButton.addEventListener("click", startQuiz);
 function startQuiz() {
   setTime()
   currentQuestion = listQuestions[0]
-  showQuestion(currentQuestion)
+  showQuestion(currentQuestion);
   startButton.style.display = "none";
 }
 
@@ -89,7 +90,7 @@ const handleClick = (num) => {
 }
 
 function endGame() {
-  secondsLeft = 0
+  clearInterval(timerInterval);
   alert(`Game Over, you got ${score} points`);
   initials = prompt("Enter your initials:");
   localStorage.setItem("highScore", score);
@@ -98,10 +99,10 @@ function endGame() {
 };
 
 function setTime() {
-  var timerInterval = setInterval(function () {
+  timerInterval = setInterval(function () {
     secondsLeft--;
     timeSpan.innerHTML = secondsLeft
-    if (secondsLeft < 0) {
+    if (secondsLeft <= 0) {
       clearInterval(timerInterval);
       endGame()
     }
