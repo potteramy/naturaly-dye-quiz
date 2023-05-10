@@ -15,6 +15,9 @@ header{
   padding: 5px;
   border-radius: 5px;
 }
+.questionBox {
+  display:none;
+}
 #question {
   border: 2px solid black;
   border-radius: 5px;
