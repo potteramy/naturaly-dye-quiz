@@ -70,7 +70,7 @@ function startQuiz() {
   currentQuestion = listQuestions[0]
   showQuestion(currentQuestion);
   startButton.style.display = "none";
-  questionBox.style.display = "block";
+  questionBox.style.display = "block"
 }
 
 const handleClick = (num) => {
