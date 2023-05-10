@@ -51,8 +51,8 @@ header{
   border-radius: 5px;
 }
 button {
-  min-width: 60px;
-  min-height: 40px;
+  min-width: 100px;
+  min-height: 60px;
   border-radius: 5px;
 }
 button:hover {
